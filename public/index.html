@@ -1,1 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <title>Array Manipulation</title>
+    <link rel="stylesheet" href="/public/node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var cities=["Delhi","Bly","Mumbai","Agra"];
+        function LoadCities(){
+            document.getElementById("lstCategories").innerHTML="";
+            for(var city of cities){
+                var option = document.createElement("option");
+                option.text=city;
+                document.getElementById("lstCategories").appendChild(option);
+            }
+        }
+        function bodyload(){
+            LoadCities();
+        }
+        function Addclick(){
+            var cityname= document.getElementById("textCity").value; // Corrected getElementById
+            cities.push(cityname);
+            alert(`${cityname} Added to List`);
+            LoadCities();
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h1>Array  Manipulations</h1>
+    <div class="row">
+        <div class="col-3">
+            <fieldset>
+                <h3>Add New City</h3>
+                <div class="input-group">
+                    <input type="text" id="textCity" class="form-control">
+                    <button class="btn btn-primary" onclick="Addclick()">Add</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-9">
+            <h3>Cities List</h3>
+            <select class="form-select" id="lstCategories">
 
+            </select>
+        </div>
+
+    </div>
+</body>
+</html>
