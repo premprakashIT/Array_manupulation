@@ -6,11 +6,11 @@
     <script>
         var cities=["Delhi","Bly","Mumbai","Agra"];
         function LoadCities(){
-            document.getElementById("lstCategories").innerHTML="";
+            document.getElementById("listCities").innerHTML="";
             for(var city of cities){
                 var option = document.createElement("option");
                 option.text=city;
-                document.getElementById("lstCategories").appendChild(option);
+                document.getElementById("listCities").appendChild(option);
             }
         }
         function bodyload(){
@@ -18,9 +18,24 @@
         }
         function Addclick(){
             var cityname= document.getElementById("textCity").value; // Corrected getElementById
-            cities.push(cityname);
+            var checkIndex=cities.indexOf(cityname);
+            if(checkIndex==-1){
+                cities.push(cityname);
             alert(`${cityname} Added to List`);
             LoadCities();
+            document.getElementById("textCity").value="";
+            }
+            else{
+                alert("City Exists Try Another City");
+                document.getElementById("textCity").value="";
+            }
+        }
+        function removeClick(){
+            var selectCityName = document.getElementById("listCities").values;
+            var selectCityIndex = cities.indexOf(selectCityName);
+           alert(`${cities.splice(selectCityIndex,1)} Removed`);
+           LoadCities();
+
         }
     </script>
 </head>
@@ -38,9 +53,12 @@
         </div>
         <div class="col-9">
             <h3>Cities List</h3>
-            <select class="form-select" id="lstCategories">
+            <div class="input-group">
+                <select class="form-select" id="listCities">
 
-            </select>
+                </select>
+                <button onclick="removeClick()" class="btn btn-danger">Remove City</button>
+            </div>
         </div>
 
     </div>
